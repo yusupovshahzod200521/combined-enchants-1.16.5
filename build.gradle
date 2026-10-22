@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+version = '1.0.0'
+group = 'uz.shahzod.combinedenchants'
+archivesBaseName = 'combined-enchants-1.16.5'
+
+minecraft {
+    mappings channel: 'official', version: '1.16.5'
+    runs {
+        client { workingDirectory project.file('run') }
+        server { workingDirectory project.file('run') }
+    }
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
+}
+
+jar.finalizedBy('reobfJar')
